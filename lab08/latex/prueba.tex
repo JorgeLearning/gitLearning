@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{minted}
+\usepackage{xcolor} % Agrega el paquete xcolor para la personalización de colores
+\usepackage{color} % Agrega el paquete xcolor para la personalización de colores
+\usepackage{keyval} % Agrega el paquete xcolor para la personalización de colores
+
+% Define un nuevo estilo para Java con colores personalizados
+\definecolor{customcolor}{RGB}{60, 65, 60} % Color de fondo similar al de VSCode
+\definecolor{codecomment}{RGB}{86,156,214} % Color de comentarios en VSCode
+\definecolor{codekeyword}{RGB}{198,120,221} % Color de palabras clave en VSCode
+\definecolor{codestring}{RGB}{209,105,105} % Color de cadenas en VSCode
+
+\newminted{java}{
+  linenos,
+  frame=lines,
+  framesep=2mm,
+  baselinestretch=1.2,
+  fontsize=\footnotesize,
+  tabsize=4,
+  breaklines,
+  escapeinside=||,
+  mathescape,
+  % Configuración de colores personalizados
+  bgcolor=customcolor,
+  style=vim, % Puedes cambiar el estilo si lo prefieres
+  %commentstyle=\color{codecomment}, % Comentarios
+  %keywordstyle=\color{codekeyword}, % Palabras clave
+  %stringstyle=\color{codestring}, % Cadenas
+  numbersep=5pt,
+  rulecolor=codeframe,
+}
+
+\begin{document}
+
+\section{Ejemplo de Código Java}
+
+A continuación se muestra un ejemplo de código Java con una configuración que se asemeja a Visual Studio Code:
+
+\begin{javacode}
+import java.util.*;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        // Este es un comentario
+        Scanner sc = new Scanner(System.in);
+        String h = sc.nextLine();
+        int i = 0;
+        System.out.println("Hello, World!");
+        
+    }
+}
+\end{javacode}
+
+\end{document}

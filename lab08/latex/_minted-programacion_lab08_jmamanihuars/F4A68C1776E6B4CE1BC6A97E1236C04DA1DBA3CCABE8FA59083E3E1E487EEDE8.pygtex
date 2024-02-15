@@ -1,0 +1,59 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+	\PYG{n}{Random} \PYG{n}{random} \PYG{o}{=} \PYG{k}{new} \PYG{n}{Random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+	\PYG{n}{Map}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{p}{,} \PYG{n}{Soldier}\PYG{o}{\PYGZgt{}} \PYG{n}{names} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashMap}\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+	\PYG{n}{Map}\PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{p}{,} \PYG{n}{Soldier}\PYG{o}{\PYGZgt{}} \PYG{n}{troop} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashMap}\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+
+	\PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{random}\PYG{p}{.}\PYG{n+na}{nextInt}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n}{Soldier} \PYG{n}{x} \PYG{o}{=} \PYG{k}{new} \PYG{n}{Soldier}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+    \PYG{n}{x}\PYG{p}{.}\PYG{n+na}{setPoints}\PYG{p}{(}\PYG{n}{random}\PYG{p}{.}\PYG{n+na}{nextInt}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+    \PYG{n}{x}\PYG{p}{.}\PYG{n+na}{setName}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{soldier}\PYG{l+s}{\PYGZdq{}} \PYG{o}{+} \PYG{n}{i}\PYG{p}{)}\PYG{p}{;}
+    \PYG{n}{names}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{n}{x}\PYG{p}{.}\PYG{n+na}{getName}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}\PYG{p}{;}
+    \PYG{n}{troop}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{c+c1}{// ordenacion ingeniada}
+	\PYG{k+kt}{long} \PYG{n}{start} \PYG{o}{=} \PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+	\PYG{n}{Map} \PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{p}{,} \PYG{n}{Soldier}\PYG{o}{\PYGZgt{}} \PYG{n}{sort} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashMap}\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+
+  \PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{names}\PYG{p}{.}\PYG{n+na}{size}\PYG{p}{(}\PYG{p}{)} \PYG{o}{!}\PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{max} \PYG{o}{=} \PYG{n}{Integer}\PYG{p}{.}\PYG{n+na}{MIN\PYGZus{}VALUE}\PYG{p}{;}
+    \PYG{n}{Soldier} \PYG{n}{god} \PYG{o}{=} \PYG{k+kc}{null}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{n}{String} \PYG{n}{i} \PYG{p}{:} \PYG{n}{names}\PYG{p}{.}\PYG{n+na}{keySet}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+      \PYG{k}{if}\PYG{p}{(}\PYG{n}{names}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getPoints}\PYG{p}{(}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{n}{max}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n}{max} \PYG{o}{=} \PYG{n}{names}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getPoints}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+        \PYG{n}{god} \PYG{o}{=} \PYG{n}{names}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{;}
+      \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{sort}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{n}{j}\PYG{p}{,} \PYG{n}{god}\PYG{p}{)}\PYG{p}{;}
+    \PYG{n}{names}\PYG{p}{.}\PYG{n+na}{remove}\PYG{p}{(}\PYG{n}{god}\PYG{p}{.}\PYG{n+na}{getName}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+    \PYG{n}{j}\PYG{o}{+}\PYG{o}{+}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{k+kt}{long} \PYG{n}{end} \PYG{o}{=} \PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{sort}\PYG{p}{.}\PYG{n+na}{size}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{println}\PYG{p}{(}\PYG{n}{i} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{: }\PYG{l+s}{\PYGZdq{}} \PYG{o}{+} \PYG{n}{sort}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getPoints}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZbs{}}\PYG{l+s}{nTiempo: }\PYG{l+s}{\PYGZdq{}} \PYG{o}{+} \PYG{p}{(}\PYG{n}{end} \PYG{o}{\PYGZhy{}} \PYG{n}{start}\PYG{p}{)} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZbs{}}\PYG{l+s}{n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+
+	\PYG{c+c1}{// insertionSortstart}
+  \PYG{n}{start} \PYG{o}{=} \PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k+kt}{int} \PYG{n}{h}\PYG{p}{;} \PYG{n}{Soldier} \PYG{n}{current}\PYG{p}{;}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{troop}\PYG{p}{.}\PYG{n+na}{size}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+    \PYG{n}{j} \PYG{o}{=} \PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{n}{current} \PYG{o}{=} \PYG{n}{troop}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZgt{}}\PYG{o}{=} \PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}} \PYG{n}{troop}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{j}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getPoints}\PYG{p}{(}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{n}{current}\PYG{p}{.}\PYG{n+na}{getPoints}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+      \PYG{n}{troop}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{n}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{troop}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{j}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+      \PYG{n}{j}\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZhy{}}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{troop}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{n}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{current}\PYG{p}{)}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{n}{end} \PYG{o}{=} \PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{troop}\PYG{p}{.}\PYG{n+na}{size}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{println}\PYG{p}{(}\PYG{n}{i} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{: }\PYG{l+s}{\PYGZdq{}} \PYG{o}{+} \PYG{n}{troop}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getPoints}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Tiempo: }\PYG{l+s}{\PYGZdq{}} \PYG{o}{+} \PYG{p}{(}\PYG{n}{end} \PYG{o}{\PYGZhy{}} \PYG{n}{start}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}\PYG{o}{*}
+\end{Verbatim}
