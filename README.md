@@ -1,6 +1,7 @@
 # Fundamentos de Git
 Git es un sistema de control de versiones que te permite como desarrollador rastrear y gestionar cambios en tu proyecto de software.
-> No uses Git con interfaces graficas de usuario, solo por consola - Paz Valderrama
+
+> No uses Git con interfaces graficas de usuario (GUI), usalo solo por consola (CLI)                      - Paz Valderrama
 
 ## Los tres estados de Git
 ### Committed (confirmado)
@@ -14,7 +15,7 @@ Significa que hemos marcado un archivo modificado en su version actual para que 
 ### Working Directory (Directorio de trabajo)
 Es una copia de una version del proyecto. **Estos archivos, se sacan de la base de datos comprimida en el Git Directory, y se colocan en disco para que lo podamos usar y modificar.**
 ### Staging Area (Area de preparacion)
-**Es un archivo**, generalmente contenido en el Git Directory, que **almacena informacion acerca de los que va a ir en nuestra proxima confirmacion.**
+**Es simplemente un archivo**, generalmente contenido en el Git Directory, que **almacena informacion acerca de lo que va a ir en nuestra proxima confirmacion.**
 ### Git directory (Directorio de Git)
 **Almacena los metadatos y la base de datos de objetos para nuestro proyecto.** Es la parte mas importante de Git, y es lo que se copia cuando clonamos un repositorio desde otro ordenador.
 
@@ -33,7 +34,7 @@ git config --system user.email "jorgehuarsaya@gmail.com"
 git config --global user.name "Jorgels"
 git config --global user.email "jorgehuarsaya@gmail.com"
 ~~~
-- Lee y escribe especificamente en el archivo `config` (es decir `.git/config`). Es especifico del directorio actual.
+- Lee y escribe especificamente en el archivo `config` (es decir `.git/config`). Es especifico del directorio actual (Repositorio actual).
 ~~~
 git config user.name "Jorgels"
 git config user.email "jorgehuarsaya@gmail.com"
@@ -48,15 +49,16 @@ git config --list
 ~~~
 
 ## Inicializando un repositorio en un directorio existente
-- Crea el esqueleto del archivo .git en el directorio actual. Tener en cuenta que aun no hay nada en el directorio que este bajo seguimiento.
+- Crea el esqueleto del archivo `.git` en el directorio actual. Ten en cuenta que aun no hay nada en el directorio que este bajo seguimiento.
 ~~~
 git init 
 ~~~
-- Comienza el seguimiento de los archivos dentro del directorio y hacer un primer commit.
+- Comienza el seguimiento de los archivos dentro del directorio y hacer una primera confirmacion (commit).
 ~~~
 git add .
 git commit -m "Initial project version"
 ~~~
+
 El comando `add` cumple varios propositos, lo usamos para empezar a rastrear archivos nuevos como lo estamos viendo en este caso; tambien para preparar archivos, y hacer otras cosas como marcar archivos en conflicto por combinación como resueltos.
 
 ## Clonando un repositorio existente
@@ -66,6 +68,8 @@ git clone https://github.com/libgit2/libgit2
 git clone https://github.com/libgit2/libgit2 mylibgit
 ~~~
 Git te permite usar distintos protocolos  de transferencia. En esta ocasion se uso `http://`, pero tambien puedes utilizar `git://` o `usuario@servidor:ruta/del/repositorio.git` que utiliza el protocolo SSH.
+
+> Personalmente siento que esta funcionalidad no sigue la filosofia de "Hazlo tu mismo", mas adelante en la seccion "Añadir repositorios remotos" puede que entiendas el porque de este pensamiento. Es verdad que como programadores debemos automatizar las funcionalidades que nos hacen perder tiempo, sin embargo, eso no justifica no conocer el funcionamiento por dentro.
 
 ## Revisando el Estado de tus archivos
 - Muestra el estado actual de los archivos. Tambien puedes ejecutar el comando con el siguiente argumento para una salida abreviada.
@@ -125,11 +129,11 @@ git log --stat
 
 - Modifica el formato de salida
 ~~~
-git log --pretty=(options: oneline, short, full, fuller, format)
-git log --pretty=format:"%h - %an, %ar : %s"
+git log --pretty=<choice>        # choices: oneline, short, full, fuller, format
+git log --pretty=format:"%h - %an, %ar : %s"        # Example
 ~~~
 
-Opciones utiles de `git log --pretty-format
+Opciones utiles de `git log --pretty=format
 
 | Opción  | Descripción de la salida                                |
 |---------|---------------------------------------------------------|
@@ -149,7 +153,7 @@ Opciones utiles de `git log --pretty-format
 | %cr     | Fecha de confirmación, relativa                         |
 | %s      | Asunto                                                  |
 
-> Puede que te estés preguntando la diferencia entre autor (author) y confirmador (committer). **Imagina** que estas contribuyendo a un proyecto de software libre y mandas un 'parche', entonces, yo, que soy colaborador lo revisare y como se que eres de la UNSA lo aplicare. Pasa que ambos intercambiamos conocimiento. **Tu como autor y yo como confirmador.**
+> Puede que te estés preguntando la diferencia entre autor (author) y confirmador (committer). **Imagina** que estas contribuyendo a un proyecto de software libre y mandas un "parche", entonces, yo, que soy colaborador lo revisare y como se que eres de la UNSA lo aplicare. Pasa que ambos hemos sido autores de ese "parche". **Tu como autor y yo como confirmador.**
 
 ## Limitar la salida del Historial
 - Lista  aquellas confirmaciones hechas despues de la fecha especificada (since - desde). Filtra segun el autor.
@@ -163,7 +167,6 @@ git log --author=jorgels
 git log --author=jorgels
 ~~~
 
-
 Opciones para limitar la salida de `git log`
 
 | Opción            | Descripción de la salida                                                                          |
@@ -176,7 +179,7 @@ Opciones para limitar la salida de `git log`
 | -S                | Muestra solo los commits que agregan o eliminan codigo que corresponda con la cadena especificada |
 
 ## Deshacer cosas
-- Utiliza tu Staging Area para el nuevo commit, si no hay cambios despues del commit que deseas reemplazar, entonces la instantanea lucira exactamente igual y lo unico que cambiaras sera el mensaje de confirmacion.
+- Utiliza tu Staging Area para el nuevo commit, si no hay cambios preparados despues del commit que deseas reemplazar, entonces la instantanea lucira exactamente igual y lo unico que cambiaras sera el mensaje de confirmacion.
 ~~~
 git commit --amend
 ~~~
@@ -203,23 +206,25 @@ git remote -v
 ~~~
 
 ## Añadir repositorios remotos 
-No te quedes solo con esta informacion, investiga a profundidad.
+Es importante que domines esta teoria entretenida, es por ello que no debes quedarte solo con esta informacion, investiga a profundidad.
 - Usa GitHub, es el programa mas usado para alojar tus repositorios remotos.
 - Practica y prueba los siguiente comandos para analizar su funcionamiento, no esperes a que te digan que es lo que va a pasar, tu puedes probarlo.
 - Te exigo tener creado un repositorio local y uno remoto. Nombralos como mas te guste.
 
 Añadir un repositorio remoto **significa establecer una conexion entre tu repositorio local y cualquier otro repositorio remoto u repositorios remotos.** 
-> Recuerda que el comando `git clone` realizaba muchas tareas pero lo mas importante es saber que hace automaticamente la relacion entre el repositorio remoto y tu repositorio local que crea automaticamente. Por defecto añade el repositorio remoto con el nombre de **origin**, este nombre no es mas que una referencia para usarla en lugar de la URL. Entonces ahora aprenderemos a hacerlo manualmente.
-> Cuando inicializas un seguimiento, git crea automaticamente la rama `master` donde se almacena todo tu proyecto. Ten en cuenta que solo cuando realizas tu primer commit, git realiza esta accion.
-> No te confundas y creas que solo puedes tener una rama local para solo un repositorio remoto, de hecho, en un repositorio local puedes tener referencias a varios servidores (repositorios remotos). Me sentire bien conmigo mismo si es que entendiste que los repositorios remotos son solo referencias en los repositorios locales.
+
+> Recuerda que el comando `git clone` realizaba muchas tareas por ti, lo que importa saber es que **hace automaticamente la relacion entre el repositorio remoto y tu repositorio local**, dicho repositorio local que tambien lo crea automaticamente. Por defecto añade el repositorio remoto con el nombre de `origin`, este nombre no es mas que **una referencia** para usarla en lugar de la URL completa.
+
+Cuando inicializas un seguimiento, git crea automaticamente la rama `master` donde se almacena todo tu proyecto. Ten en cuenta que solo cuando realizas tu primera confirmacion (commit), git realiza esta accion.
+No te quiero confundir pero no pienses erroneamente que solo puedes tener una rama local para seguir solo un repositorio remoto, de hecho, en un repositorio local puedes tener referencias a varios servidores (repositorios remotos). Me sentire bien conmigo mismo si es que entendiste que los repositorios remotos son solo referencias en los repositorios locales.
 
 ---
-- Añade un remoto nuevo y asocia a un nombre que puedas referenciar facilmente.r
+- Añade un remoto nuevo y asocia a un nombre que puedas referenciar facilmente.
 ~~~
 git remote add [name] [url]
 ~~~
 
-> El `name` no necesariamente debe ser igual al nombre del repositorio remoto, si entendiste eso de referencias, me diras que obviamente no debe ser igual ya que es solo una referencia para que simplifique manipular dicho repositorio.
+> El `name` no necesariamente debe ser igual al nombre del repositorio remoto, si entendiste eso de referencias, me diras que obviamente no debe ser igual ya que es solo una referencia para que me simplifique manipular dicho repositorio.
 
 ## Traer y combinar remotos
 Ya tienes la referencia, ahora puedes realizar operaciones usando esta referencia.
@@ -227,14 +232,14 @@ Ya tienes la referencia, ahora puedes realizar operaciones usando esta referenci
 ~~~
 git fetch [remote-name]
 ~~~
-> Es importante destacar que el comando solo trae datos a tu repositorio local, ni lo combina automaticamente con tu trabajo ni modifica el trabajo que llevas hecho. La combinación con tu trabajo debes hacerla manualmente, configurando las ramas locales para que rastreen ramas remotas y finalmente ejecutando el comando `git pull`. Si relaciones esto con lo aprendido te daras cuenta que desde ahora todo es igual.
+> Es importante destacar que el comando solo trae datos a tu repositorio local, ni lo combina automaticamente con tu trabajo ni modifica el trabajo que llevas hecho. La combinación con tu trabajo debes hacerla manualmente, creando y configurando ramas locales para que rastreen ramas remotas especificas y finalmente ejecutando el comando `git pull`. Si relacionas esto con lo aprendido te daras cuenta que desde ahora todo es igual.
 
 ## Enviar a tus remotos
-- Envia la informacion de la rama local que deseas alservidor (repositorio remoto) que hayas referenciado en el repositorio local.
+- Envia la informacion de una rama local al servidor (repositorio remoto) que este referenciado en el repositorio local.
 ~~~
 git push [remote-name] [branch-name]
 ~~~
-> Si has configurado que rama local sigue a una rama remota, no es necesario realizar esta especificacion, basta con `git push`. De hecho, cuando clonamos un repositorio, git hace automaticamente esta configuracion, por ello solo ejecutamos comandos como `git pull` y `git push`
+> Si has configurado que una rama local siga a una rama remota especifica, no es necesario realizar esta especificacion, basta con `git push`. De hecho, cuando clonamos un repositorio, git hace automaticamente esta configuracion, por ello solo ejecutamos comandos como `git pull` y `git push`
 
 ## Inspeccionar un remoto
 - Muestra informacion acerca de un remoto en particular.
