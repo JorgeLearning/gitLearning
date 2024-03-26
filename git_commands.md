@@ -21,7 +21,7 @@ Es una copia de una version del proyecto. **Estos archivos, se sacan de la base 
 ## Relacion entre los tres estados y secciones de Git
 Si una versión concreta de un archivo está en el Git Directory, se considera confirmada (committed). Si ha sufrido cambios desde que se obtuvo del repositorio, pero ha sido añadida al Staging Area, está preparada (staged). Y si ha sufrido cambios desde que se obtuvo del repositorio, pero no se ha preparado, está modificada (modified).
 
-===
+---
 ## Configurando Git por primera vez
 - Lee y escribe especificamente en el archivo `/etc/gitconfig`. Valores para todos los usuarios del sistema.
 ~~~
