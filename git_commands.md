@@ -1,6 +1,6 @@
 # Fundamentos de Git
-Hola, Git es un sistema de control de versiones que te permite como desarrollador rastrear y gestionar cambios en tu proyecto de software.
-> No uses Git con interfaces graficas de usuario, solo por consola! - Paz Valderrama
+Git es un sistema de control de versiones que te permite como desarrollador rastrear y gestionar cambios en tu proyecto de software.
+>> No uses Git con interfaces graficas de usuario, solo por consola! - Paz Valderrama
 
 ## Los tres estados de Git
 ### Committed (confirmado)
@@ -25,53 +25,53 @@ Si una versión concreta de un archivo está en el Git Directory, se considera c
 ## Configurando Git por primera vez
 - Lee y escribe especificamente en el archivo `/etc/gitconfig`. Valores para todos los usuarios del sistema.
 ~~~
-$ git config --system user.name "Jorgels"
-$ git config --system user.email "jorgehuarsaya@gmail.com"
+git config --system user.name "Jorgels"
+git config --system user.email "jorgehuarsaya@gmail.com"
 ~~~
 - Lee y escribe especificamente en el archivo `~/.gitconfig` o `~/.config/git/config`. Valores para tu usuario.
 ~~~
-$ git config --global user.name "Jorgels"
-$ git config --global user.email "jorgehuarsaya@gmail.com"
+git config --global user.name "Jorgels"
+git config --global user.email "jorgehuarsaya@gmail.com"
 ~~~
 - Lee y escribe especificamente en el archivo `config` (es decir `.git/config`). Es especifico del directorio actual.
 ~~~
-$ git config user.name "Jorgels"
-$ git config user.email "jorgehuarsaya@gmail.com"
+git config user.name "Jorgels"
+git config user.email "jorgehuarsaya@gmail.com"
 ~~~
 - Elige el editor de texto por defecto que se utilizara cuando Git necesite que introduzcas un mensaje.
 ~~~
-$ git config --global core.editor nvim
+git config --global core.editor nvim
 ~~~
 - Muestra todas las propiedades que Git ha configurado
 ~~~
-$ git config --list
+git config --list
 ~~~
 
 ## Inicializando un repositorio en un directorio existente
 - Crea el esqueleto del archivo .git en el directorio actual. Tener en cuenta que aun no hay nada en el directorio que este bajo seguimiento.
 ~~~
-$ git init 
+git init 
 ~~~
 - Comienza el seguimiento de los archivos dentro del directorio y hacer un primer commit.
 ~~~
-$ git add .
-$ git commit -m "Initial project version"
+git add .
+git commit -m "Initial project version"
 ~~~
 El comando `add` cumple varios propositos, lo usamos para empezar a rastrear archivos nuevos como lo estamos viendo en este caso; tambien para preparar archivos, y hacer otras cosas como marcar archivos en conflicto por combinación como resueltos.
 
 ## Clonando un repositorio existente
 - El el siguiente ejemplo, **se obtiene una copia** de un repositorio Git existente. **crea** un directorio llamado `libgit2`, **inicializa** un directorio `.git` en su interior, **descarga** toda la información de ese repositorio y **saca una copia de trabajo** de la última versión. Tambien puedes especificar el nombre del directorio.
 ~~~
-$ git clone https://github.com/libgit2/libgit2
-$ git clone https://github.com/libgit2/libgit2 mylibgit
+git clone https://github.com/libgit2/libgit2
+git clone https://github.com/libgit2/libgit2 mylibgit
 ~~~
 Git te permite usar distintos protocolos  de transferencia. En esta ocasion se uso `http://`, pero tambien puedes utilizar `git://` o `usuario@servidor:ruta/del/repositorio.git` que utiliza el protocolo SSH.
 
 ## Revisando el Estado de tus archivos
 - Muestra el estado actual de los archivos. Tambien puedes ejecutar el comando con el siguiente argumento para una salida abreviada.
 ~~~
-$ git status
-$ git status -s     # de --short
+git status
+git status -s     # de --short
 ~~~
 
 ## Ignorar archivos, el archivo .gitignore
@@ -80,53 +80,53 @@ GitHub mantiene una extensa lista de archivos .gitignore adecuados a docenas de 
 ## Ver los cambios preparados y no preparados
 - Muestra lo que has cambiado pero aun no lo has preparado.
 ~~~
-$ git diff <file>
+git diff <file>
 ~~~
 
 - Muestra lo que has preparado y sera incluido en la proxima confirmacion (commit)
 ~~~
-$ git diff --staged <file>
-$ git diff --cached <file>
+git diff --staged <file>
+git diff --cached <file>
 ~~~
 
 ## Saltar el Staging Area
 - Prepara automaticamente todos los archivos rastreados antes de confirmarlos, ahorrandote el paso de `git add`.
 ~~~
-$ git commit -a -m "Added new benchmarks"
+git commit -a -m "Added new benchmarks"
 ~~~
 
 ## Eliminar archivos
 - Elimina tu archivo del Git Directory y del Working Directory, sim embargo esta a la espera de ser confirmado (commited). Pero, puedes **forzar** la eliminacion inmediata sin la necesidad de una confirmacion.
 ~~~
-$ git rm <file>
-$ git rm -f <file>       # -f de force
+git rm <file>
+git rm -f <file>       # -f de force
 ~~~
 
 - Mantiene el archivo en el Working Directory pero lo elimina del Staging Area
 ~~~
-$ git rm --cached <file>
+git rm --cached <file>
 ~~~
 
 ## Ver el historial de commits (confirmaciones)
 - Lista los commits hechos sobre ese repositorio en orden cronologico inverso.
 ~~~
-$ git log
+git log
 ~~~
 
 - Muestra las diferencias introducidas en cada confirmacion
 ~~~
-$ git log -p
+git log -p
 ~~~
 
 - Muestra una lista de archivos con un resumen de las lineas insertadas y eliminadas de los archivos confirmados
 ~~~
-$ git log --stat
+git log --stat
 ~~~
 
 - Modifica el formato de salida
 ~~~
-$ git log --pretty=(options: oneline, short, full, fuller, format)
-$ git log --pretty=format:"%h - %an, %ar : %s"
+git log --pretty=(options: oneline, short, full, fuller, format)
+git log --pretty=format:"%h - %an, %ar : %s"
 ~~~
 
 Opciones utiles de `git log --pretty-format
@@ -154,13 +154,13 @@ Opciones utiles de `git log --pretty-format
 ## Limitar la salida del Historial
 - Lista  aquellas confirmaciones hechas despues de la fecha especificada (since - desde). Filtra segun el autor.
 ~~~
-$ git log --since=2.weeks
-$ git log --since="2050-01-24"
-$ git log --author=jorgels
+git log --since=2.weeks
+git log --since="2050-01-24"
+git log --author=jorgels
 ~~~
 - Lista solo aquellas confirmaciones que cumplen ciertos criterios.
 ~~~
-$ git log --author=jorgels
+git log --author=jorgels
 ~~~
 
 
@@ -178,28 +178,28 @@ Opciones para limitar la salida de `git log`
 ## Deshacer cosas
 - Utiliza tu Staging Area para el nuevo commit, si no hay cambios despues del commit que deseas reemplazar, entonces la instantanea lucira exactamente igual y lo unico que cambiaras sera el mensaje de confirmacion.
 ~~~
-$ git commit --amend
+git commit --amend
 ~~~
 
 ### Deshacer un archivo preparado
 - Deshace la preparacion del archivo especifico.
 ~~~
-$ git reset HEAD <file>
+git reset HEAD <file>
 ~~~
 >! Ojito: Este comando `reset` es magico, te recomiendo investigar como usarlo para que haga cosas realmente interesantes.
 
 ### Deshacer un archivo modificado
 - Deshace los cambios hechos en el directorio de trabajo
 ~~~
-$ git restore <file>
+git restore <file>
 ~~~
 
 ---
 ## Trabajar con remotos
 - Muestra los repositorios remotos configurados en tu maquina local, la opcion -v muestra las URLs
 ~~~
-$ git remote
-$ git remote -v
+git remote
+git remote -v
 ~~~
 
 ## Añadir repositorios remotos 
@@ -216,7 +216,7 @@ Añadir un repositorio remoto **significa establecer una conexion entre tu repos
 ---
 - Añade un remoto nuevo y asocia a un nombre que puedas referenciar facilmente.r
 ~~~
-$ git remote add [name] [url]
+git remote add [name] [url]
 ~~~
 
 >! El `name` no necesariamente debe ser igual al nombre del repositorio remoto, si entendiste eso de referencias, me diras que obviamente no debe ser igual ya que es solo una referencia para que simplifique manipular dicho repositorio.
@@ -225,7 +225,7 @@ $ git remote add [name] [url]
 Ya tienes la referencia, ahora puedes realizar operaciones usando esta referencia.
 - Trae toda la informacion que aun no tienes del repositorio remoto. Luego de hacer esto, tendrás referencias a todas las ramas del remoto, las cuales puedes combinar e inspeccionar cuando quieras.
 ~~~
-$ git fetch [remote-name]
+git fetch [remote-name]
 ~~~
 >! Es importante destacar que el comando solo trae datos a tu repositorio local, ni lo combina automaticamente con tu trabajo ni modifica el trabajo que llevas hecho. La combinación con tu trabajo debes hacerla manualmente, configurando las ramas locales para que rastreen ramas remotas y finalmente ejecutando el comando `git pull`. Si relaciones esto con lo aprendido te daras cuenta que desde ahora todo es igual.
 
@@ -233,32 +233,22 @@ $ git fetch [remote-name]
 ## Enviar a tus remotos
 - Envia la informacion de la rama local que deseas alservidor (repositorio remoto) que hayas referenciado en el repositorio local.
 ~~~
-$ git push [remote-name] [branch-name]
+git push [remote-name] [branch-name]
 ~~~
 >! Si has configurado que rama local sigue a una rama remota, no es necesario realizar esta especificacion, basta con `git push`. De hecho, cuando clonamos un repositorio, git hace automaticamente esta configuracion, por ello solo ejecutamos comandos como `git pull` y `git push`
 
 ## Inspeccionar un remoto
 - Muestra informacion acerca de un remoto en particular.
 ~~~
-$ git remote show [remote-name]
+git remote show [remote-name]
 ~~~
 
 ## Eliminar y renombrar remotos
 - Renombra y/o elimina el repositorio remoto respectivamente.
 ~~~
-$ git remote rename [back-name] [new-name]
-$ git remote rm [remote-name]
+git remote rename [back-name] [new-name]
+git remote rm [remote-name]
 ~~~
-
-
-
-
-
-----------------------------COMANDOS DE AUTENTICACION---------------------------
-Comando 2: Actualiza la URL remota con el nuevo token (push)
---> git remote set-url --push origin https://tu-nuevo-token@github.com/usuario/tu-repositorio.git
-Comando 3: Actualiza la URL de origen de tu repositorio (fetch)
---> git remote set-url origin https://tu-nuevo-token@github.com/usuario/tu-repositorio.git
 
 ## Dudas existenciales
 - Que pasaria si en un contexto controlado, dos colaboradores intentan hacer exactamente los mismo movimientos y cambios en el codigo, es posible que el hash sea el mismo (?)
